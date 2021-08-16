@@ -1,0 +1,29 @@
+server:
+  port: 8081
+spring:
+#  application:
+#    name: userservice #服务名称
+  datasource:
+    url: jdbc:mysql://localhost:3306/cloud_user?useSSL=false
+    username: root
+    password: 970512
+    driver-class-name: com.mysql.jdbc.Driver
+#  cloud:
+#    nacos:
+#      server-addr: localhost:8848 # nacos服务地址
+#      discovery:
+#        cluster-name: HZ # 集群名称，HZ指杭州
+mybatis:
+  type-aliases-package: cn.itcast.user.pojo
+  configuration:
+    map-underscore-to-camel-case: true
+logging:
+  level:
+    cn.itcast: debug
+  pattern:
+    dateformat: MM-dd HH:mm:ss:SSS
+
+#eureka:
+#  client:
+#    service-url: #服务地址信息
+#      defaultZone: http://127.0.0.1:10086/eureka

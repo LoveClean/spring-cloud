@@ -1,0 +1,49 @@
+server:
+  port: 8080
+spring:
+  #  application:
+  #    name: orderservice #服务名称
+  datasource:
+    url: jdbc:mysql://localhost:3306/cloud_order?allowPublicKeyRetrieval=true&useSSL=false
+    username: root
+    password: 970512
+    driver-class-name: com.mysql.jdbc.Driver
+#  cloud:
+#    nacos:
+#      server-addr: localhost:8848 # nacos服务地址
+#      discovery:
+#        cluster-name: HZ # 集群名称，HZ指杭州
+#        namespace: e3d134fc-c8e2-4998-a8c1-604368775218 # 命名空间，填ID
+#        ephemeral: false # 是否是临时实例
+mybatis:
+  type-aliases-package: cn.itcast.user.pojo
+  configuration:
+    map-underscore-to-camel-case: true
+logging:
+  level:
+    cn.itcast: debug
+  pattern:
+    dateformat: MM-dd HH:mm:ss:SSS
+
+#eureka:
+#  client:
+#    service-url: #服务地址信息
+#      defaultZone: http://127.0.0.1:10086/eureka
+userservice:
+  ribbon:
+    #    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule # 负载均衡规则（完全随机访问）
+    NFLoadBalancerRuleClassName: com.alibaba.cloud.nacos.ribbon.NacosRule # 负载均衡规则 （集群优先访问，后随机）
+ribbon:
+  eager-load:
+    enabled: true # 开启饥饿加载
+    clients: # 指定对userservice这个服务饥饿加载
+      - userservice
+feign:
+#  client:
+#    config:
+#      userservice: # 这里用default就是全局配置，如果是写服务名称，则是针对某个微服务的配置
+#        loggerLevel: FULL #  日志级别
+  httpclient:
+    enabled: true # 开启feign对HttpClient的支持
+    max-connections: 200 # 最大的连接数
+    max-connections-per-route: 50 # 每个路径的最大连接数
