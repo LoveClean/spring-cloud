@@ -1,0 +1,87 @@
+server:
+  port: 8099
+  servlet:
+    session:
+      timeout: 1800s
+
+spring:
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  redis:
+    database: 0
+    host: localhost
+    port: 6379
+    password:
+    timeout: 3600s
+  main:
+    banner-mode: console
+  http:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+  datasource:
+    name: datasource
+    url: jdbc:mysql://localhost:3306/springboot2021?serverTimezone=GMT%2b8
+    username: root
+    password: 970512
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+#    druid:
+#      test-on-borrow: false
+#      test-while-idle: true
+#      test-on-return: false
+#      validation-query: SELECT 1
+
+mybatis:
+  config-location: classpath:mybatis-config.xml
+  mapper-locations: classpath:mapper/*Mapper.xml
+
+logging:
+  path: /base-web-log
+
+# 应用信息
+app:
+  app-name: app
+  app-host: http://app.com
+  allow-generate-api: true
+  allow-cross-domain-access: true
+  # 开发dev 测试test  生产 master
+  env: dev
+
+# 对象存储配置
+object-storage:
+  accessKeyId:
+  accessKeySecret:
+  upload-endpoint:
+  download-endpoint:
+  bucketName:
+  # 下载地址的有效时长，单位为ms，默认为半小时（非必填）
+  download-url-expiration: 1800000
+  #样式（非必填）
+#  styleName: resize,h_250
+
+# 图片尺寸限制
+img:
+  width: 2000
+  height: 2000
+
+userservice:
+  ribbon:
+    #    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule # 负载均衡规则（完全随机访问）
+    NFLoadBalancerRuleClassName: com.alibaba.cloud.nacos.ribbon.NacosRule # 负载均衡规则 （集群优先访问，后随机）
+ribbon:
+  eager-load:
+    enabled: true # 开启饥饿加载
+    clients: # 指定对userservice这个服务饥饿加载
+      - userservice
+feign:
+  #  client:
+  #    config:
+  #      userservice: # 这里用default就是全局配置，如果是写服务名称，则是针对某个微服务的配置
+  #        loggerLevel: FULL #  日志级别
+  httpclient:
+    enabled: true # 开启feign对HttpClient的支持
+    max-connections: 200 # 最大的连接数
+    max-connections-per-route: 50 # 每个路径的最大连接数
