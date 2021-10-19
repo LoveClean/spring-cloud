@@ -19,6 +19,10 @@ spring:
           uri: lb://orderservice
           predicates:
             - Path=/order/**
+        - id: sample-service
+          uri: lb://sampleservice
+          predicates:
+            - Path=/sample/**
       default-filters: # 默认过滤器，会对所有的路由请求都生效
         - AddRequestHeader=Truth, Itcast is freaking awesome! # 添加请求头
       globalcors: # 全局的跨域处理
