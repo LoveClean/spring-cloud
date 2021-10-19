@@ -4,7 +4,8 @@
 此模板目前已集成的模块如下：
 * 初级配置：
     * Swagger（图形化测试工具）
-    * TK.Mybatis（Mybatis的增强工具）
+    * ~~【已移除】TK.Mybatis（Mybatis的增强工具）~~
+    * mybatis-plus（Mybatis的增强工具）
     * Redis（非关系型数据库）
     * ObjectStorage（对象存储服务）
 * 中级配置：
