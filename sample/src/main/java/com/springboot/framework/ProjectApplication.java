@@ -1,5 +1,6 @@
 package com.springboot.framework;
 
+import cn.itcast.feign.clients.SampleClient;
 import cn.itcast.feign.clients.UserClient;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -11,6 +12,7 @@ import tk.mybatis.spring.annotation.MapperScan;
 
 /**
  * 主程序类
+ * > @EnableFeignClients：配置feign客户机
  * > @SpringBootApplication：这是一个SpringBoot应用
  * > @MapperScan 扫描mapper映射包路径
  * > @EnableTransactionManagement //开启事务管理
@@ -19,7 +21,7 @@ import tk.mybatis.spring.annotation.MapperScan;
  *
  * @author huangpengfei
  */
-@EnableFeignClients(clients = {UserClient.class})
+@EnableFeignClients(clients = {UserClient.class, SampleClient.class})
 @MapperScan(value = "com.springboot.framework.dao.mapper")
 @SpringBootApplication
 //@EnableTransactionManagement

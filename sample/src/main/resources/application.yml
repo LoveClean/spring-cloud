@@ -16,11 +16,6 @@ spring:
     timeout: 3600s
   main:
     banner-mode: console
-  http:
-    encoding:
-      charset: UTF-8
-      enabled: true
-      force: true
   datasource:
     name: datasource
     url: jdbc:mysql://localhost:3306/springboot2021?serverTimezone=GMT%2b8
@@ -37,9 +32,6 @@ spring:
 mybatis:
   config-location: classpath:mybatis-config.xml
   mapper-locations: classpath:mapper/*Mapper.xml
-
-logging:
-  path: /base-web-log
 
 # 应用信息
 app:
